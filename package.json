@@ -1,0 +1,87 @@
+{
+  "name": "@gustavoadolfo/minhoteca-admin-function",
+  "version": "0.1.0",
+  "description": "API do módulo administrativo de biblioteca da Minhoteca",
+  "main": "index.js",
+  "files": [
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "NODE_OPTIONS='--experimental-vm-modules --trace-warnings' jest",
+    "test:coverage": "NODE_OPTIONS='--experimental-vm-modules --trace-warnings' jest --coverage",
+    "test:watch": "NODE_OPTIONS='--experimental-vm-modules --trace-warnings' jest --watch",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "lint:staged": "lint-staged",
+    "format": "prettier --write \"**/*.{js,ts,md,json,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,md,json,yml,yaml}\"",
+    "clean": "rm -rf dist coverage",
+    "prepare": "npm run build",
+    "postinstall": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GustavoAdolfo/minhoteca-admin-function.git"
+  },
+  "keywords": [
+    "Minhoteca",
+    "biblioteca",
+    "empréstimo",
+    "livro",
+    "livraria",
+    "comunidade"
+  ],
+  "author": "gustavo.adolfo.as@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GustavoAdolfo/minhoteca-admin-function/issues"
+  },
+  "homepage": "https://github.com/GustavoAdolfo/minhoteca-admin-function#readme",
+  "devDependencies": {
+    "@aws-sdk/client-config-service": "^3.956.0",
+    "@aws-sdk/client-dynamodb": "^3.956.0",
+    "@aws-sdk/client-s3": "^3.956.0",
+    "@aws-sdk/lib-dynamodb": "^3.956.0",
+    "@aws-sdk/node-http-handler": "^3.370.0",
+    "@aws-sdk/util-dynamodb": "^3.956.0",
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "@gustavoadolfo/minhoteca-adapter-layer": "file:../minhoteca-adapter-layer/gustavoadolfo-minhoteca-adapter-layer-0.1.1.tgz",
+    "@gustavoadolfo/minhoteca-core-layer": "file:../minhoteca-core-layer/gustavoadolfo-minhoteca-core-layer-0.1.0.tgz",
+    "@types/aws-lambda": "^8.10.159",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.49.0",
+    "@typescript-eslint/parser": "^8.49.0",
+    "aws-lambda": "^1.0.7",
+    "commitlint": "^20.2.0",
+    "dotenv": "^17.2.3",
+    "eslint": "^9.39.2",
+    "husky": "^9.1.7",
+    "jest": "^30.2.0",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4",
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "lint-staged": {
+    "*.{js,ts,json,md,yml,yaml}": [
+      "prettier --write"
+    ],
+    "src/**/*.{ts,tsx}": [
+      "eslint --max-warnings=0 --fix"
+    ]
+  },
+  "dependencies": {
+    "@smithy/types": "^4.9.0",
+    "winston": "^3.19.0"
+  }
+}
