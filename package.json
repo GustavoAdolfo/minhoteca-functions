@@ -1,6 +1,6 @@
 {
   "name": "@gustavoadolfo/minhoteca-admin-function",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "API do módulo administrativo de biblioteca da Minhoteca",
   "main": "dist/index.js",
   "files": [
