@@ -7,13 +7,6 @@ const result = dotenvConfig({ path: envPath });
 
 if (result.error) {
   console.error('❌ Erro ao carregar .env.tests:', result.error);
-} else {
-  console.log('✅ Arquivo .env.tests carregado:', envPath);
-  console.log('📦 Variáveis carregadas:', {
-    ENDPOINT: process.env.ENDPOINT,
-    AWS_REGION: process.env.AWS_REGION,
-    EDITORA_TABLE_NAME: process.env.EDITORA_TABLE_NAME,
-  });
 }
 
 // Defaults para testes locais (evitam provider chain)

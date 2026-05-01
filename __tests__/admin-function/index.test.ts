@@ -1,13 +1,6 @@
 import { APIGatewayEvent, Context } from 'aws-lambda';
-import { handler } from '../index';
-import { DynamoDBRepository } from '@gustavoadolfo/minhoteca-adapter-layer';
-
-// Mock do DynamoDBRepository
-jest.mock('@gustavoadolfo/minhoteca-adapter-layer', () => ({
-  DynamoDBRepository: jest.fn().mockImplementation(() => ({
-    saveData: jest.fn().mockResolvedValue(undefined),
-  })),
-}));
+import { handler } from '../../admin-function/index';
+import { RepositoryInterface } from '@gustavoadolfo/minhoteca-adapter-layer';
 
 const defaultEvent = {
   body: null,
@@ -63,26 +56,42 @@ const defaultEvent = {
 };
 
 describe('Minhoteca Admin Function Handler', () => {
-  it('deve salvar editora e retornar status 200', async () => {
+  let mockRepository: RepositoryInterface;
+
+  beforeEach(() => {
+    mockRepository = {
+      saveData: jest.fn(),
+      getData: jest.fn(),
+      queryData: jest.fn(),
+      removeData: jest.fn(),
+      getAll: jest.fn(),
+      updateByMinhotecaId: jest.fn(),
+      deleteByMinhotecaId: jest.fn(),
+      findByMinhotecaId: jest.fn(),
+    };
+  });
+
+  it('deve criar editora e retornar status 201', async () => {
     const event = {
       ...defaultEvent,
-      path: '/v1/editora',
-      resourcePath: '/v1/editora',
+      path: '/v1/admin/editora',
+      resourcePath: '/v1/admin/editora',
       requestContext: {
         ...defaultEvent.requestContext,
-        resourcePath: '/v1/editora',
+        resourcePath: '/v1/admin/editora',
+        path: '/DEFAULT/v1/admin/editora',
       },
-      resource: '/v1/editora',
+      resource: '/v1/admin/editora',
       httpMethod: 'POST',
       body: JSON.stringify({ nome: 'Editora Teste' }),
     } as unknown as APIGatewayEvent;
     const response = await handler(event, {} as Context);
 
-    expect(response.statusCode).toBe(200);
-    const body = JSON.parse(response.body);
-    expect(body).toHaveProperty('message', 'Editora salvo com sucesso!');
-    console.log({ body });
-    expect(body).toHaveProperty('data');
-    expect(body.data).toHaveProperty('nome');
+    expect((response as any).statusCode).toBe(201);
+    const body = JSON.parse((response as any).body);
+    expect(body).toHaveProperty('Message', 'Editora criada com sucesso');
+    expect(body).toHaveProperty('PageData');
+    expect(Array.isArray(body.PageData)).toBe(true);
+    expect(body.PageData[0]).toHaveProperty('nome', 'Editora Teste');
   });
 });
