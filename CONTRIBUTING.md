@@ -10,10 +10,10 @@ Esperamos que todos os colaboradores sigam um comportamento respeitoso e inclusi
 
 ### 0. Pré-requisitos
 
-- Node.js **22+** (LTS mais recente)
+- Node.js **24+** (LTS mais recente)
 - npm 10+
 
-> A toolchain está alinhada para Node 22+. O TypeScript está fixado na linha 5.5.x (mais alta suportada pelo stack @typescript-eslint atual) para garantir compatibilidade de linting.
+> A toolchain está alinhada para Node 24+. O TypeScript está fixado na linha 5.5.x (mais alta suportada pelo stack @typescript-eslint atual) para garantir compatibilidade de linting.
 
 ### 1. Fork e Clone
 
@@ -80,9 +80,9 @@ git checkout -b fix/minha-correcao
 Todas as novas features devem incluir testes unitários. Coloque os testes em `src/__tests__/` seguindo a estrutura de diretórios do código.
 
 ```bash
-npm run test         # Rodar testes
-npm run test:coverage # Ver cobertura
-npm run test:watch   # Modo watch
+npm test             # Rodar testes
+npm test:coverage    # Ver cobertura
+npm test:watch       # Modo watch
 ```
 
 ### 2. Verifique o Linter

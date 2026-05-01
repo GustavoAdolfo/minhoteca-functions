@@ -14,6 +14,7 @@ Este projeto oferece os recursos necessário para administração do ambiente da
 Minhoteca tem como missão facilitar o acesso gratuito à leitura, gestão de empréstimos e organização de pequenas bibliotecas em comunidades, ONGs e projetos sociais, contribuindo para os Objetivos de Desenvolvimento Sustentável (ODS) da ONU — especialmente os que tratam de educação de qualidade e redução das desigualdades.
 
 **Alinhamento aos ODS:**
+
 - 🎓 ODS 4: Educação de Qualidade
 - 📚 ODS 10: Redução das Desigualdades
 - 💚 ODS 17: Parcerias para a Implementação dos Objetivos
@@ -26,7 +27,6 @@ Minhoteca tem como missão facilitar o acesso gratuito à leitura, gestão de em
 - **Testes Completos:** testes unitários com 80%+ de cobertura
 - **CI/CD Automatizado:** Build, testes e deploy via GitHub Actions
 - **Pronto para AWS Lambda Layers:** Documentação completa de deployment
-
 
 ## 📚 Documentação
 
@@ -59,16 +59,17 @@ npm run lint:fix    # Auto-corrigir
 npm run clean       # Limpar dist/
 ```
 
-
 ## 🤝 Contribuir
 
 Queremos sua contribuição! Veja [CONTRIBUTING.md](./CONTRIBUTING.md) para:
+
 - Padrões de código
 - Como escrever testes
 - Processo de PR
 - Convenção de commits
 
 Contribuições em qualquer nível são bem-vindas:
+
 - 🐛 Reportar bugs
 - 📝 Melhorar documentação
 - ✨ Sugerir features
@@ -76,17 +77,24 @@ Contribuições em qualquer nível são bem-vindas:
 
 ## 📋 Roadmap
 
-**v0.2.0** (Próximo):
+**v0.2.0**:
 
+- Implementação inicial de Value Objects e Entities
+- DTOs, Adapters e Erros customizados de domínio
+- Setup completo de pipelines de CI/CD e Dependabot
 
-**v0.3.0**:
+**v0.3.0** (Próximo):
 
+- Guia de deploy para AWS Lambda Layer
+- Exemplos de integração com DynamoDB e AWS SDK
+- Entidades complementares (Empréstimo, Devolução, Reserva)
 
 ## 📄 Licença
 
 Distribuído sob licença **MIT** (veja [LICENSE](./LICENSE)).
 
 Escolhemos MIT para incentivar:
+
 - ✅ Uso comercial
 - ✅ Modificações
 - ✅ Distribuição

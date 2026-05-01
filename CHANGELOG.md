@@ -7,7 +7,10 @@ e este projeto segue [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-05-01
+
 ### Added
+
 - Implementação inicial de Value Objects (ISBN, Email, Nome, Data)
 - Implementação de Entities (Autor, Editora, Livro) com lógica de negócio
 - DTOs para transferência de dados entre camadas
@@ -19,7 +22,8 @@ e este projeto segue [Semantic Versioning](https://semver.org/).
 - Configuração de Dependabot para manutenção de dependências
 - Documentação de contribuição (CONTRIBUTING.md)
 
-### Next Steps (v0.2.0)
+### Next Steps (v0.3.0)
+
 - Lambda Layer deployment guide
 - DynamoDB repositories example
 - AWS SDK integration helpers
@@ -30,6 +34,7 @@ e este projeto segue [Semantic Versioning](https://semver.org/).
 ### Initial Release
 
 Primeira versão estável com:
+
 - Estrutura base do projeto
 - Setup de TypeScript, ESLint, Jest
 - Package.json configurado para GitHub Packages
