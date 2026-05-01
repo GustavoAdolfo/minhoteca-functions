@@ -1,0 +1,25 @@
+{
+  "extends": "../../package.json",
+  "name": "@gustavoadolfo/minhoteca-autor",
+  "version": "0.1.0",
+  "description": "API para consulta de autores do Minhoteca",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "esbuild index.ts --bundle --platform=node --target=node20 --outdir=dist --external:@gustavoadolfo/minhoteca-core-layer --external:@gustavoadolfo/minhoteca-adapter-layer",
+    "pack:layers:core": "cd ../../minhoteca-core-layer && npm run clean && npm run build && npm pack && cd ../../minhoteca-functions/autor-function",
+    "pack:layers:adapter": "cd ../../minhoteca-adapter-layer && npm run build && npm pack && cd ../../minhoteca-functions/autor-function",
+    "build:localstack:admin": "esbuild index.ts --bundle --platform=node --target=node20 --outdir=dist --external:@gustavoadolfo/minhoteca-core-layer --external:@gustavoadolfo/minhoteca-adapter-layer && cp package.localstack.json dist/package.json && cd ./dist && npm install",
+    "build:localstack": "npm run pack:layers:core && npm run pack:layers:adapter && npm run clean && npm install && npm run build:localstack:admin",
+    "test": "NODE_OPTIONS='--experimental-vm-modules --trace-warnings' jest",
+    "test:coverage": "NODE_OPTIONS='--experimental-vm-modules --trace-warnings' jest --coverage",
+    "test:watch": "NODE_OPTIONS='--experimental-vm-modules --trace-warnings' jest --watch",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "lint:staged": "lint-staged",
+    "format": "prettier --write \"**/*.{js,ts,md,json,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,md,json,yml,yaml}\"",
+    "clean": "rm -rf dist coverage",
+    "prepare": "npm run build",
+    "postinstall": "husky install"
+  }
+}

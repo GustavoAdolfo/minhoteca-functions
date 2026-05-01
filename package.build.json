@@ -1,0 +1,29 @@
+{
+  "name": "@gustavoadolfo/minhoteca-admin-function",
+  "version": "0.1.0",
+  "description": "API do módulo administrativo de biblioteca da Minhoteca",
+  "main": "dist/index.js",
+  "files": ["dist", "node_modules", "README.md", "LICENSE"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GustavoAdolfo/minhoteca-admin-function.git"
+  },
+  "keywords": ["Minhoteca", "biblioteca", "empréstimo", "livro", "livraria", "comunidade"],
+  "author": "gustavo.adolfo.as@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GustavoAdolfo/minhoteca-admin-function/issues"
+  },
+  "homepage": "https://github.com/GustavoAdolfo/minhoteca-admin-function#readme",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "lint-staged": {
+    "*.{js,ts,json,md,yml,yaml}": ["prettier --write"],
+    "src/**/*.{ts,tsx}": ["eslint --max-warnings=0 --fix"]
+  },
+  "dependencies": {}
+}

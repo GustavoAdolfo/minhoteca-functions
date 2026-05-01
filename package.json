@@ -1,0 +1,97 @@
+{
+  "name": "@gustavoadolfo/minhoteca-admin-function",
+  "version": "0.2.0",
+  "description": "API do módulo administrativo de biblioteca da Minhoteca",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "node_modules",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc && tsc-alias -p ./tsconfig.json && cp package.build.json dist/package.json && cd ./dist && npm install",
+    "pack:layers:core": "cd ../minhoteca-core-layer && npm run clean && npm run build && npm pack && cd ../minhoteca-admin-function",
+    "pack:layers:adapter": "cd ../minhoteca-adapter-layer && npm run build && npm pack && cd ../minhoteca-admin-function",
+    "build:localstack:admin": "tsc && tsc-alias -p ./tsconfig.json && cp package.localstack.json dist/package.json && cd ./dist && npm install",
+    "build:localstack": "npm run pack:layers:core && npm run pack:layers:adapter && npm run clean && npm install && npm run build:localstack:admin",
+    "test": "NODE_OPTIONS='--experimental-vm-modules --trace-warnings' jest",
+    "test:coverage": "NODE_OPTIONS='--experimental-vm-modules --trace-warnings' jest --coverage",
+    "test:watch": "NODE_OPTIONS='--experimental-vm-modules --trace-warnings' jest --watch",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "lint:staged": "lint-staged",
+    "format": "prettier --write \"**/*.{js,ts,md,json,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,md,json,yml,yaml}\"",
+    "clean": "rm -rf dist coverage",
+    "prepare": "npm run build",
+    "postinstall": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GustavoAdolfo/minhoteca-admin-function.git"
+  },
+  "keywords": [
+    "Minhoteca",
+    "biblioteca",
+    "empréstimo",
+    "livro",
+    "livraria",
+    "comunidade"
+  ],
+  "author": "gustavo.adolfo.as@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GustavoAdolfo/minhoteca-admin-function/issues"
+  },
+  "homepage": "https://github.com/GustavoAdolfo/minhoteca-admin-function#readme",
+  "devDependencies": {
+    "@aws-sdk/client-config-service": "^3.956.0",
+    "@aws-sdk/client-dynamodb": "^3.956.0",
+    "@aws-sdk/client-s3": "^3.956.0",
+    "@aws-sdk/lib-dynamodb": "^3.956.0",
+    "@aws-sdk/node-http-handler": "^3.370.0",
+    "@aws-sdk/s3-request-presigner": "^3.992.0",
+    "@aws-sdk/util-dynamodb": "^3.956.0",
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "@gustavoadolfo/minhoteca-adapter-layer": "file:../minhoteca-adapter-layer/gustavoadolfo-minhoteca-adapter-layer-0.4.0.tgz",
+    "@gustavoadolfo/minhoteca-core-layer": "file:../minhoteca-core-layer/gustavoadolfo-minhoteca-core-layer-1.0.2.tgz",
+    "@smithy/types": "^4.9.0",
+    "@types/aws-lambda": "^8.10.159",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "commitlint": "^20.2.0",
+    "dotenv": "^17.2.3",
+    "esbuild": "^0.25.12",
+    "eslint": "^9.39.2",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "lint-staged": "^16.2.7",
+    "mongodb": "^7.0.0",
+    "prettier": "^3.7.4",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.16",
+    "typescript": "^5.9.3"
+  },
+  "overrides": {
+    "ajv": "8.18.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "lint-staged": {
+    "*.{js,ts,json,md,yml,yaml}": [
+      "prettier --write"
+    ],
+    "src/**/*.{ts,tsx}": [
+      "eslint --max-warnings=0 --fix"
+    ]
+  }
+}
